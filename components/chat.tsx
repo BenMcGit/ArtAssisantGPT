@@ -14,7 +14,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "./ui/select";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const roleToColorMap: Record<Message["role"], string> = {
 	system: "red",
@@ -37,11 +37,21 @@ const THEMES = [
 export default function Chat() {
 	const { status, messages, input, submitMessage, handleInputChange } =
 		useAssistant({ api: "/api/assistant" });
-
+	const messagesContainerRef = useRef<HTMLDivElement>(null);
 	const [theme, setTheme] = useState(THEMES[0]);
 
+	useEffect(() => {
+		if (messagesContainerRef.current) {
+			messagesContainerRef.current.scrollTop =
+				messagesContainerRef.current.scrollHeight;
+		}
+	}, [messages]);
+
 	return (
-		<div className="flex flex-col w-full max-w-xl py-24 mx-auto stretch">
+		<div
+			className="flex flex-col w-full max-w-xl py-24 mx-auto stretch bg-cyan-100"
+			ref={messagesContainerRef}
+		>
 			{messages.map((m: Message) => (
 				<div
 					key={m.id}
@@ -92,7 +102,7 @@ export default function Chat() {
 					onChange={handleInputChange}
 				/>
 				<Button
-					className="grow"
+					className="flex grow"
 					disabled={status !== "awaiting_message"}
 					type="submit"
 				>
