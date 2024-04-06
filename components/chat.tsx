@@ -49,7 +49,7 @@ export default function Chat() {
 
 	return (
 		<div
-			className="flex flex-col w-full max-w-xl py-24 mx-auto stretch bg-cyan-100"
+			className="flex flex-col w-full max-w-xl py-24 mx-auto stretch"
 			ref={messagesContainerRef}
 		>
 			{messages.map((m: Message) => (
