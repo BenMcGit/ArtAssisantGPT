@@ -32,6 +32,7 @@ const THEMES = [
   'Impressionism',
 ];
 
+//TODO: Too big, split into smaller components
 export default function Chat() {
   const {
     status,
@@ -42,7 +43,7 @@ export default function Chat() {
     handleInputChange,
   } = useAssistant({ api: '/api/assistant' });
   const [theme, setTheme] = useState(THEMES[0]);
-  const [tab, setTab] = useState('chating'); // ['chating', 'painting'] TODO:Test
+  const [tab, setTab] = useState('chating'); // ['chating', 'painting']
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const setPaintingDes = useSetPaintingDesc();
   const paintingDes = usePaintingDesc();
@@ -67,7 +68,10 @@ export default function Chat() {
       messagesContainerRef.current.scrollTop =
         messagesContainerRef.current.scrollHeight;
     }
-    if (messages?.length > 0) {
+    if (
+      messages?.length > 0 &&
+      messages[messages.length - 1]?.role === 'assistant'
+    ) {
       setPaintingDes(messages[messages.length - 1]?.content);
     }
   }, [messages]);
