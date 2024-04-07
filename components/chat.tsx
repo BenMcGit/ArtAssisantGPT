@@ -5,21 +5,14 @@ import {
   // import as useAssistant:
   experimental_useAssistant as useAssistant,
 } from 'ai/react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import cx from 'clsx';
+import ImgGenerator from '@/modules/imgGenerator.tsx';
 import {
   useSetMessage as useSetPaintingDesc,
   useMessage as usePaintingDesc,
-} from '@/app/services/message';
+} from '@/services/message';
+import { useClearImg, useRequestImg } from '@/services/image';
 
 const roleToColorMap: Record<Message['role'], string> = {
   system: 'red',
@@ -49,17 +42,22 @@ export default function Chat() {
     handleInputChange,
   } = useAssistant({ api: '/api/assistant' });
   const [theme, setTheme] = useState(THEMES[0]);
-  const [tab, setTab] = useState('chat'); // ['chat', 'painting']
+  const [tab, setTab] = useState('painting'); // ['chating', 'painting'] TODO:Test
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const setPaintingDes = useSetPaintingDesc();
   const paintingDes = usePaintingDesc();
+  const clearImg = useClearImg();
+  const requestImg = useRequestImg();
 
   const handleDescriBtn = useCallback(() => {
     setInput(`Describe a a painting using the theme ${theme}`);
-    setTab('chat');
+    setTab('chating');
+    clearImg();
+    debugger;
   }, [theme]);
 
-  const handleImgBtn = useCallback(() => {
+  const handleImgBtn = useCallback(async () => {
+    requestImg();
     setTab('painting');
   }, []);
 
@@ -75,7 +73,7 @@ export default function Chat() {
 
   return (
     <div className="stretch mx-auto flex h-screen w-full max-w-md flex-col pb-24 pt-8">
-      {tab === 'chat' && (
+      {tab === 'chating' && (
         <div className="mb-24 w-full overflow-auto" ref={messagesContainerRef}>
           {messages.map((m: Message) => (
             <div
@@ -106,6 +104,7 @@ export default function Chat() {
           )}
         </div>
       )}
+      {tab === 'painting' && <ImgGenerator />}
 
       <div className="fixed bottom-0 flex flex-col gap-y-[14px] w-full max-w-md p-2 mb-4 border border-gray-300 shadow-xl bg-slate-200 rounded">
         <form onSubmit={submitMessage}>

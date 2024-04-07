@@ -5,7 +5,7 @@ interface MessageStore {
   setMessage: (message: string) => void;
 }
 
-const useMessageStore = create<MessageStore>((set) => ({
+export const useMessageStore = create<MessageStore>((set) => ({
   message: '',
   setMessage: (message: string) => set({ message }),
 }));
