@@ -94,8 +94,8 @@ This checklist outlines the steps needed to create and submit the project. Make 
 5. **Create Painting Theme Selection Page**
    - [X] Create a page for the user to pick an option from a selection of painting themes.
    - [X] Include a button to send a message to the assistant for it to generate a painting description with the selected theme.
-   - [ ] Use the OpenAI Assistants API to create threads and messages for the assistant.
-   - [ ] Display the generated text output in a text box when the assistant answers.
+   - [X] Use the OpenAI Assistants API to create threads and messages for the assistant.
+   - [X] Display the generated text output in a text box when the assistant answers.
 
 6. **Image Generation**
    - [ ] Create a button for the user to request the image to be generated based on the content of the text box.
