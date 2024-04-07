@@ -74,15 +74,16 @@ export default function Chat() {
 
 			<form
 				onSubmit={submitMessage}
-				className="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 shadow-xl bg-slate-200 rounded"
+				className="fixed bottom-0 w-full max-w-md p-2 mb-4 border border-gray-300 shadow-xl bg-slate-200 rounded"
 			>
 				<input
 					disabled={status !== "awaiting_message"}
 					className="w-full max-w-md p-2 mb-2 border bg-white border-gray-300 rounded shadow-xl"
 					value={input}
-					placeholder="Describe a painting..."
+					placeholder="Describe a painting with a description..."
 					onChange={handleInputChange}
 				/>
+				<p className="flex justify-center py-2 font-bold"> OR</p>
 				<select
 					id="countries"
 					className="w-full max-w-md p-2 mb-2 border border-gray-300 rounded shadow-xl dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-white"
@@ -104,7 +105,7 @@ export default function Chat() {
 							setInput(`Describe a a painting using the theme ${theme}`)
 						}
 					>
-						Describe painting
+						Describe a painting with a theme...
 					</button>
 				</div>
 			</form>
