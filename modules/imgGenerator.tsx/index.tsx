@@ -1,10 +1,10 @@
 'use client';
-import { useImgUrl } from '@/services/image';
+import { useImgUrl } from '@/services/img';
 
 //TODO: bad coding styles
 const ImgGeneratorWrapper: React.FC = () => {
   const imgUrl = useImgUrl();
-  if (!!imgUrl)
+  if (!imgUrl)
     return (
       <div className="flex items-center justify-center w-full min-h-[256px]">
         generating image...

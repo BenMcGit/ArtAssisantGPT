@@ -13,15 +13,19 @@ const useImageStore = create<ImageStore>((set) => ({
   requestImg: async () => {
     let prompt = useMessageStore.getState().message;
     //TODO:send request to server
-    let url = await fetchApi<string>({
-      path: '/api/image',
-      method: 'POST',
-      params: { prompt },
-    });
-    debugger;
+    let res = JSON.stringify(
+      await fetchApi({
+        path: '/img',
+        method: 'POST',
+        params: { prompt: prompt },
+      })
+    );
+    let url = JSON.parse(res).data[0].url;
     set({ url });
   },
-  clearImg: () => set({ url: '' }),
+  clearImg: () => {
+    set({ url: '' });
+  },
 }));
 
 const selectors = {

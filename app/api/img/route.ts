@@ -11,7 +11,14 @@ export const runtime = 'edge';
 export async function POST(req: Request) {
   // Parse the request body
   const input: {
-    prompts: string;
+    prompt: string;
   } = await req.json();
-  return NextResponse.json({ prompts: input.prompts });
+  const res = await openai.images.generate({
+    model: 'dall-e-2',
+    prompt: input.prompt,
+    n: 1,
+    size: '256x256',
+  });
+
+  return NextResponse.json(res);
 }

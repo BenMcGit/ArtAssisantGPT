@@ -12,7 +12,7 @@ import {
   useSetMessage as useSetPaintingDesc,
   useMessage as usePaintingDesc,
 } from '@/services/message';
-import { useClearImg, useRequestImg } from '@/services/image';
+import { useClearImg, useRequestImg } from '@/services/img';
 
 const roleToColorMap: Record<Message['role'], string> = {
   system: 'red',
@@ -42,7 +42,7 @@ export default function Chat() {
     handleInputChange,
   } = useAssistant({ api: '/api/assistant' });
   const [theme, setTheme] = useState(THEMES[0]);
-  const [tab, setTab] = useState('painting'); // ['chating', 'painting'] TODO:Test
+  const [tab, setTab] = useState('chating'); // ['chating', 'painting'] TODO:Test
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const setPaintingDes = useSetPaintingDesc();
   const paintingDes = usePaintingDesc();
@@ -50,10 +50,11 @@ export default function Chat() {
   const requestImg = useRequestImg();
 
   const handleDescriBtn = useCallback(() => {
-    setInput(`Describe a a painting using the theme ${theme}`);
+    setInput(
+      `Describe a a painting using the theme ${theme} concisely and with under 500 characters`
+    );
     setTab('chating');
     clearImg();
-    debugger;
   }, [theme]);
 
   const handleImgBtn = useCallback(async () => {
