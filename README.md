@@ -36,7 +36,7 @@ Your insightful and thoughtful art assistant
 
 ## Overview
 
-An AI chatbot that is a certified jokester! If you are looking for a laugh you came to the right place. JokeGPT will brighten your day with custom jokes personalized to your humor! 
+An AI chatbot that can critique and generate art! Describe an image or select a theme to generate text. Then, ask to generate an image from the text! 
 
 ## Installation
 
@@ -98,13 +98,13 @@ This checklist outlines the steps needed to create and submit the project. Make 
    - [X] Display the generated text output in a text box when the assistant answers.
 
 6. **Image Generation**
-   - [ ] Create a button for the user to request the image to be generated based on the content of the text box.
-   - [ ] Create a short form after the button for the user to choose the image generation parameters.
-   - [ ] Include a button to request the image to be generated.
-   - [ ] Ask the Image Generation API to generate the image.
-   - [ ] Display a loader while the image is being generated.
-   - [ ] Display the generated image in the page once it is ready.
+   - [X] Create a button for the user to request the image to be generated based on the content of the text box.
+   - [X] Create a short form after the button for the user to choose the image generation parameters.
+   - [X] Include a button to request the image to be generated.
+   - [X] Ask the Image Generation API to generate the image.
+   - [X] Display a loader while the image is being generated.
+   - [X] Display the generated image in the page once it is ready.
 
 7. **Submission**
-   - [ ] Submit your project in the submission form.
+   - [X] Submit your project in the submission form.
 
